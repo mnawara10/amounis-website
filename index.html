@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+    }
+    .countdown {
+      font-size: 48px;
+      font-weight: bold;
+      margin-top: 50px;
+    }
+    img {
+      margin-top: 20px;
+      border-radius: 15px;
+      width: 300px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="content" style="display: none;">
+    <h1>Countdown to March 19, 2025</h1>
+    <div id="countdown" class="countdown"></div>
+    <img src="your-image.jpg" alt="You and your girlfriend">
+    <img src="countdown-image.jpg" alt="Another picture" style="margin-top: 50px;">
+  </div>
+  
+  <script>
+    const correctPassword = "topgun"; // Set the password here
+    const password = prompt("Please enter the password:");
+
+    if (password === correctPassword) {
+      // Show the content
+      document.getElementById("content").style.display = "block";
+      
+      function updateCountdown() {
+        const targetDate = new Date("March 19, 2025 00:00:00").getTime();
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+        
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (timeLeft < 0) {
+          document.getElementById("countdown").innerHTML = "The day has arrived!";
+        }
+      }
+
+      setInterval(updateCountdown, 1000);
+    } else {
+      document.body.innerHTML = "<h1>Incorrect password!</h1>";
+    }
+  </script>
+</body>
+</html>
